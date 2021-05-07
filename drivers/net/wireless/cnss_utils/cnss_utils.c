@@ -88,7 +88,7 @@ void cnss_utils_set_avtimer_fptr(struct avtimer_cnss_fptr_t avtimer)
 }
 EXPORT_SYMBOL(cnss_utils_set_avtimer_fptr);
 
-static void cnss_utils_start_avtimer(void)
+static __maybe_unused void cnss_utils_start_avtimer(void)
 {
 	if (avtimer_func.fptr_avtimer_open &&
 	    avtimer_func.fptr_avtimer_enable) {
@@ -99,7 +99,7 @@ static void cnss_utils_start_avtimer(void)
 	}
 }
 
-static void cnss_utils_stop_avtimer(void)
+static __maybe_unused void cnss_utils_stop_avtimer(void)
 {
 	if (avtimer_func.fptr_avtimer_enable)
 		avtimer_func.fptr_avtimer_enable(0);
@@ -107,13 +107,13 @@ static void cnss_utils_stop_avtimer(void)
 		pr_err("AV Timer is not supported\n");
 }
 #else
-static void cnss_utils_start_avtimer(void)
+static __maybe_unused void cnss_utils_start_avtimer(void)
 {
 	pr_err("AV Timer is not supported\n");
 }
 EXPORT_SYMBOL(cnss_utils_start_avtimer);
 
-static void cnss_utils_stop_avtimer(void)
+static __maybe_unused void cnss_utils_stop_avtimer(void)
 {
 	pr_err("AV Timer is not supported\n");
 }
